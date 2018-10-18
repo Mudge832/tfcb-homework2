@@ -1,0 +1,83 @@
+---
+title: "Lecture 3"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library (tidyverse)
+```
+```{r}
+data<-read_tsv("example_dataset_1.tsv") %>%
+  print(data, n=5)
+```
+```{r}
+ggplot(data, aes(x = kozak_region,
+                 y = mean_ratio)) +
+  geom_point()
+```
+```{r}
+ggplot(data, aes(x = kozak_region,
+                 y = mean_ratio,
+                 color = insert_sequence,
+                 group = insert_sequence)) +
+  geom_point()
+```
+```{r}
+ggplot(data, aes(x = kozak_region,
+                 y = mean_ratio,
+                 color = insert_sequence,
+                 group = insert_sequence)) +
+  geom_point() + 
+  geom_point()
+```
+```{r}
+ggplot(data, aes(x = kozak_region,
+                 y = mean_ratio,
+                 group = insert_sequence)) +
+  geom_point() + 
+  geom_point() + 
+  facet_grid(~insert_sequence)
+```
+```{r}
+print (data, n=3)
+```
+```{r}
+data %>%
+  print(n=3)
+```
+```{r}
+data %>%
+  print(n=2)
+```
+```{r}
+data %>%
+  select(strain, mean_ratio, insert_sequence, kozak_region) %>%
+  print(n=2)
+```
+```{r}
+data %>%
+  filter(kozak_region == "A")
+```
+```{r}
+data %>% 
+  filter(kozak_region == "A", insert_sequence == "10xAGA")
+```
+```{r}
+data %>%
+  filter(kozak_region == "A") %>%
+  filter(insert_sequence == "10xAGA")
+```
+```{r}
+data %>% 
+  arrange(mean_ratio)
+```
+
+
+
+
+
+  
